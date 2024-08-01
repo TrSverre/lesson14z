@@ -51,8 +51,8 @@ resource "yandex_compute_instance" "vm-1" {
   }
   connection {
     type     = "ssh"
-    user     = "root"
-    private_key = file("/root/.ssh/id_rsa")
+    user     = "user"
+    private_key = file("/home/user/.ssh/id_rsa")
     host = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
   }
   provisioner "file" {
@@ -103,8 +103,8 @@ resource "yandex_compute_instance" "vm-2" {
   }
   connection {
     type     = "ssh"
-    user     = "root"
-    private_key = file("/root/.ssh/id_rsa")
+    user     = "user"
+    private_key = file("/home/user/.ssh/id_rsa")
     host = yandex_compute_instance.vm-2.network_interface.0.nat_ip_address
   }
   provisioner "remote-exec" {
