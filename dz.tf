@@ -39,7 +39,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   network_interface {
-    subnet_id = "e9bohr7qvj70b390umrp"
+    subnet_id = "e9bn6jti153pnjcqpf8q"
     nat       = true
   }
 
@@ -51,8 +51,8 @@ resource "yandex_compute_instance" "vm-1" {
   }
   connection {
     type     = "ssh"
-    user     = "user"
-    private_key = file("./id_rsa")
+    user     = "root"
+    private_key = file("/root/.ssh/id_rsa")
     host = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
   }
   provisioner "file" {
@@ -91,7 +91,7 @@ resource "yandex_compute_instance" "vm-2" {
   }
 
   network_interface {
-    subnet_id = "e9bohr7qvj70b390umrp"
+    subnet_id = "e9bn6jti153pnjcqpf8q"
     nat       = true
   }
 
@@ -103,8 +103,8 @@ resource "yandex_compute_instance" "vm-2" {
   }
   connection {
     type     = "ssh"
-    user     = "user"
-    private_key = file("./id_rsa")
+    user     = "root"
+    private_key = file("/root/.ssh/id_rsa")
     host = yandex_compute_instance.vm-2.network_interface.0.nat_ip_address
   }
   provisioner "remote-exec" {
@@ -130,7 +130,6 @@ resource "yandex_compute_disk" "hddvm2" {
 
 resource "yandex_container_registry" "my-reg" {
   name = "my-registry"
-  folder_id = "b1gum68ifoa9fbhijk7v"
   labels = {
     my-label = "my-label-value"
   }
